@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>API Rick & Morty </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="search-bar">
+        <input type="text" v-model="searchText" placeholder="Filtrar personagens carregados...">
+        <button type="submit">Buscar</button>
+    </div>
+    <div style="margin-top: 50px;">
+    <ul>
+        <li v-for="personage in filteredPersonages" :key="personage.id" :class="getTypeClass(personage.species)">
+            <div class="personage-card">
+                <img :src="personage.image" alt="personage-image">
+                <p class="personage-name"><i v-if="personage.status=='Dead'" class="material-symbols-outlined">skull</i></img>{{personage.name.toUpperCase()}}</p>
+                <div class="details">
+                    <p>Espécie: {{personage.species}}</p>
+                    <p>Origem: {{personage.origin.name}}</p>
+                    
+
+                </div>
+            </div>
+        </li>
+    </ul>
+    </div>
+    <div v-if="loading"> Carregando...</div>
+</div>
+</body>
+</html>
+
+<script src="index.js"></script>
